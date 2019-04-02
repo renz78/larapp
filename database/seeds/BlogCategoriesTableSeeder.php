@@ -11,6 +11,14 @@ class BlogCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $categories = [];
+
+        $cName = 'Без категории';
+        $categories[] = [
+            'title'     => $cName,
+            'slug'      => str_slug($cName),
+            'parent_id' => 0,
+        ];
+        
     }
 }
