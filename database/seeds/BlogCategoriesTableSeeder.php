@@ -19,6 +19,18 @@ class BlogCategoriesTableSeeder extends Seeder
             'slug'      => str_slug($cName),
             'parent_id' => 0,
         ];
-        
+
+        for ($i=1; $i <= 10 ; $i+1) { 
+            $cName = 'Категория #'.$i;
+            $parentid = ($i > 4) ? rand(1, 4) : 1;
+
+            $categories[] = [
+                'title'     => $cName,
+                'slug'      => str_slug($cName),
+                'parent_id' => $parentid,
+            ];
+
+            \DB::table('blog_categories')->insert($categories);
+        }
     }
 }
