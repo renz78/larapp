@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
-
+namespace App\Http\Controllers\Blog\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\BlogPost;
+use App\Models\BlogCategory;
 
-class PostController extends Controller
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //$name = 'eqwe';
-        $items = BlogPost::all();
-        return view('blog.posts.index', compact('items'));
+    {   
+        //$dsd = BlogCategory::all();
+        $paginator = BlogCategory::paginate(15);
+
+        //dd($dsd, $paginator);
+        return view('blog.admin.category.index', compact('paginator'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -39,7 +39,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -50,7 +50,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -61,7 +61,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = BlogCategory::findOrFail($id);
+        $categorylist = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item', 'categorylist'));
     }
 
     /**
@@ -73,7 +76,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -84,6 +87,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd(__METHOD__);
     }
 }
